@@ -56,22 +56,22 @@ public class GamePanel extends JPanel implements ActionListener {
 				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
 				g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
 			}
-
+            //color and shape of the apple
             g.setColor(Color.orange);
             g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
+            //draw the snake i = 0 is the head
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
                     g.setColor(new Color(250,0,250));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
                 else {
-                    g.setColor(new Color(250,0,250));
-                    //g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
+                    g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
             }
-            g.setColor(Color.red);
+            g.setColor(Color.yellow);
             g.setFont( new Font("Ink Free",Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
             g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
@@ -82,6 +82,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
     public void newApple(){
+        //apple appear on screen randomly
         appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
         appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
     }
