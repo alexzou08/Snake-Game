@@ -7,17 +7,24 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener {
+    //We don't want the size to change
     static final int SCREEN_WIDTH = 1300;
     static final int SCREEN_HEIGHT = 750;
+    //Snake Size
     static final int UNIT_SIZE = 50;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
+    //The higher the delay is, the slower the game is
     static final int DELAY = 175;
+    //Snake body and head
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
+    // initial length of the snake
     int bodyParts = 6;
     int applesEaten;
+    //position of the apple
     int appleX;
     int appleY;
+    // R for right, L for left, U for up, D for down
     char direction = 'R';
     boolean running = false;
     Timer timer;
