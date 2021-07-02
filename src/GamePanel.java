@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int UNIT_SIZE = 50;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
     //The higher the delay is, the slower the game is
-    static final int DELAY = 175;
+    static final int DELAY = 200;
     //Snake body and head
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements ActionListener {
         draw(g);
     }
     public void draw(Graphics g) {
-
+        //check if game is over
         if(running) {
 			//draw grid to background
 			for(int i=0;i<SCREEN_WIDTH/UNIT_SIZE;i++) {
@@ -152,6 +152,7 @@ public class GamePanel extends JPanel implements ActionListener {
         //Game Over text
         g.setColor(Color.red);
         g.setFont( new Font("Ink Free",Font.BOLD, 75));
+        //FontMetrics is used to make the string to be at the center of the screen
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
     }
@@ -170,6 +171,7 @@ public class GamePanel extends JPanel implements ActionListener {
         @Override
         public void keyPressed(KeyEvent e) {
             switch(e.getKeyCode()) {
+                // prevent users from making 180 degree turn
                 case KeyEvent.VK_LEFT:
                     if(direction != 'R') {
                         direction = 'L';
